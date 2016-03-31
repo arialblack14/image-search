@@ -8,7 +8,9 @@ var Images = require('../models/images');
 var imageRouter = express.Router();
 imageRouter.use(bodyParser.json());
 
-imageRouter.route('/')
+imageRouter.route('/:placeholder')
 .get(function(req, res, next) {
-  
+
 });
+
+module.exports = imageRouter;

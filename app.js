@@ -7,8 +7,14 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose');
 
+// Access our config variables
+var config = require('./config');
+
+// Require Bing API
+var Bing = require('node-bing-api')({accKey: config.bingKey});
+
 // Needed to connect to mongodb - use image (in mongo REPL)
-var url = 'mongodb://localhost:27017/image';
+var url = config.mongoURL;
 mongoose.connect(url);
 
 var db = mongoose.connection;
@@ -34,10 +40,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/api/images/search', imageRouter);
+app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
