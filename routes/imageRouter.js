@@ -4,7 +4,7 @@ var express = require('express'),
 
 // require our images model
 var Images = require('../models/images');
-
+// So as to grab the Bing Key
 var config = require('../config');
 
 // Start our imageRouter
@@ -19,7 +19,7 @@ imageRouter.route('/:search')
   var arr = [];
 
   // Images search
-  Bing.images(req.params.search, { skip: 50 }, function(error, res, body) {
+  Bing.images(req.params.search, { skip: 100 }, function(error, res, body) {
     if (error) throw error;
 
     var data = body.d.results;
@@ -29,8 +29,8 @@ imageRouter.route('/:search')
       var url = data[i].MediaUrl; // Grab the url
       var thumbnail = data[i].Thumbnail.MediaUrl; // Grab the thumbnail
       var context = 'http://' + data[i].DisplayUrl; // And the site
-      var imageInfo = { url: url, snippet: title, thumbnail: thumbnail, context: context }; // Push to our images array
-      arr.push(imageInfo);
+      var image = { url: url, snippet: title, thumbnail: thumbnail, context: context }; // Push to our images array
+      arr.push(image);
     }
     response.send(arr);
   });

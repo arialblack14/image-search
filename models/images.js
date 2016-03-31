@@ -4,10 +4,24 @@ var Schema = mongoose.Schema;
 
 // Create a images schema
 var imageSchema = new Schema({
-  image: {
+  title: {
+    type: String,
+    required: true
+  },
+  url: {
+    type: String,
+    required: true
+  },
+  thumbnail: {
+    type: String,
+    required: true
+  },
+  context: {
     type: String,
     required: true
   }
+}, {
+  timestamps: true
 });
 
 // The schema is useless so far so we need to create a model using it
