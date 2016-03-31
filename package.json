@@ -1,0 +1,29 @@
+{
+  "name": "image-search",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "node-bing-api": "^2.4.0",
+    "serve-favicon": "~2.3.0"
+  },
+  "description": "This is another project for the Freecodecamp curriculum. i used the BING API which conveniently provides a node module.",
+  "main": "app.js",
+  "keywords": [
+    "node",
+    "images",
+    "search",
+    "express",
+    "mongodb"
+  ],
+  "author": "Alex Tsiras",
+  "license": "ISC"
+}
