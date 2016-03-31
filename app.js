@@ -10,9 +10,6 @@ var express = require('express'),
 // Access our config variables
 var config = require('./config');
 
-// Require Bing API
-var Bing = require('node-bing-api')({accKey: config.bingKey});
-
 // Needed to connect to mongodb - use image (in mongo REPL)
 var url = config.mongoURL;
 mongoose.connect(url);
@@ -42,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', routes);
-app.use('/api/images/search', imageRouter);
+app.use('/api/images', imageRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
