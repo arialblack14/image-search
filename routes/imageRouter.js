@@ -15,13 +15,13 @@ imageRouter.use(bodyParser.json());
 var Bing = require('node-bing-api')({accKey: config.bingKey});
 
 imageRouter.route('/:search')
-.get(function(req, response, next) {
+.get(function(request, response, next) {
   var arr = [];
+  var offset = request.query.offset || 0;
 
   // Images search
-  Bing.images(req.params.search, { skip: 100 }, function(error, res, body) {
+  Bing.images(request.params.search, { top: 10 , skip: offset }, function(error, res, body) {
     if (error) throw error;
-
     var data = body.d.results;
     console.log(data[0]);
     for (var i = 0; i < data.length -1; i++) {
